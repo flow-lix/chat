@@ -14,8 +14,13 @@ import org.lix.chat.handler.SecureChatInitializer;
 public class NettyServer {
 
     private static NettyServer nettyServer;
+    private static final int PORT = Integer.parseInt(System.getProperty("port", "8081"));
 
     private NettyServer() {
+    }
+
+    public static void main(String[] args) throws Exception {
+        NettyServer.getNettyServer().start();
     }
 
     private EventLoopGroup bossGroup = new NioEventLoopGroup(1);
@@ -34,8 +39,8 @@ public class NettyServer {
                     .channel(NioServerSocketChannel.class)
                     .handler(new LoggingHandler(LogLevel.DEBUG))
                     .childHandler(new SecureChatInitializer(sslContext));
-        } catch (Exception e) {
-            e.printStackTrace();
+
+            bootstrap.bind(PORT).channel().closeFuture().sync();
         } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
