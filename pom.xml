@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.lix</groupId>
-    <artifactId>lix-chat</artifactId>
+    <artifactId>l-chat</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>lix-chat</name>
+    <name>l-chat</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
